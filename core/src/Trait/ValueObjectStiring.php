@@ -4,7 +4,7 @@ namespace App\Trait;
 
 trait ValueObjectString
 {
-    use ValueObjectOf;
+    use ValueObject;
 
     private $value;
 
