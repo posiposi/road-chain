@@ -2,9 +2,9 @@
 
 namespace App\Trait;
 
-trait ValueObjectOf
+trait ValueObject
 {
-    public static function of($value): self
+    public static function from($value): self
     {
         if ($value instanceof static) {
             return $value;
