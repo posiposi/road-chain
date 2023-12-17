@@ -10,11 +10,11 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->ulid('shop_id')->primary();
-            $table->string('owner_id');
+            $table->ulid('owner_id');
             $table->string('shop_name');
-            $table->string('shop_tel')->nullable();
+            $table->string('shop_tel', 15)->nullable();
             $table->string('shop_address')->nullable();
-            $table->string('shop_postal_code')->nullable();
+            $table->string('shop_postal_code', 8)->nullable();
             $table->string('shop_email')->nullable();
             $table->timestamps();
         });
