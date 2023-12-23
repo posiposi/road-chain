@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\src\Bike\Domain\Models;
+namespace Core\src\Shop\Domain\Models;
 
 use Core\src\Owner\Domain\Models\OwnerId;
 use Core\src\Shop\Domain\Models\ShopId;

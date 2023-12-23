@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\src\Domain\Models;
+namespace Core\src\Common\Domain\Models;
 
 use App\Exceptions\common\InvalidException;
 use App\Trait\ValueObjectString;
