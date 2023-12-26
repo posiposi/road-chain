@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import { Button, Box } from '@chakra-ui/react';
 import { useEffect } from 'react';
+import sendByLine from '../Components/Dashboard/sendByLine';
 
 export default function Dashboard({ auth }: PageProps) {
   useEffect(() => {
@@ -16,6 +17,10 @@ export default function Dashboard({ auth }: PageProps) {
     return () => {
       document.body.removeChild(script);
     };
+  }, []);
+
+  useEffect(() => {
+    sendByLine();
   }, []);
 
   return (
@@ -32,7 +37,9 @@ export default function Dashboard({ auth }: PageProps) {
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6 text-gray-900">You're logged in!</div>
+            <div id="line-test-text" className="p-6 text-gray-900">
+              1234567890
+            </div>
           </div>
         </div>
       </div>
@@ -41,19 +48,14 @@ export default function Dashboard({ auth }: PageProps) {
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6" style={{ display: 'flex' }}>
               <Button colorScheme="red">fuga</Button>
-              <Box mt={1.5} ml={2}>
-                <div
-                  className="line-it-button"
-                  data-lang="ja"
-                  data-type="share-a"
-                  data-env="REAL"
-                  data-url="https://developers.line.biz/ja/docs/line-social-plugins/install-guide/using-line-share-buttons/#using-official-line-icons"
-                  data-color="default"
-                  data-size="large"
-                  data-count="false"
-                  data-ver="3"
-                  style={{ display: 'none' }}
-                ></div>
+              <Box ml={2}>
+                <a id="line_send_text_icon" href="">
+                  <img
+                    src="http://localhost/img/LINE_Brand_icon.png"
+                    alt="LINEロゴ"
+                    style={{ height: '40px', width: '40px' }}
+                  />
+                </a>
               </Box>
             </div>
           </div>
