@@ -1,11 +1,22 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
-import { Button, Box } from '@chakra-ui/react';
-import { useEffect } from 'react';
-import sendByLine from '../Components/Dashboard/sendByLine';
+import {
+  Button,
+  Box,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Input,
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import setSendTextByLine from '../Components/Dashboard/Line/setSendText';
 
 export default function Dashboard({ auth }: PageProps) {
+  const [inputValue, setInputValue] = useState('');
+
+  // LINE URLスキームの読み込み
   useEffect(() => {
     const script = document.createElement('script');
     script.src =
@@ -19,9 +30,10 @@ export default function Dashboard({ auth }: PageProps) {
     };
   }, []);
 
-  useEffect(() => {
-    sendByLine();
-  }, []);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+    setSendTextByLine(event.target.value);
+  };
 
   return (
     <AuthenticatedLayout
@@ -37,13 +49,25 @@ export default function Dashboard({ auth }: PageProps) {
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div id="line-test-text" className="p-6 text-gray-900">
-              1234567890
+            <div className="p-6 text-gray-900">
+              <FormControl>
+                <FormLabel>LINE送信テスト用フォーム</FormLabel>
+                <Input
+                  value={inputValue}
+                  type="text"
+                  id="line-test-text"
+                  placeholder="送信したいメッセージを入力してください。"
+                  onChange={handleInputChange}
+                />
+                <FormHelperText>
+                  LINEでの紹介コード送信テスト用のフォームです
+                </FormHelperText>
+              </FormControl>
             </div>
           </div>
         </div>
       </div>
-      <div className="py-12">
+      <div>
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6" style={{ display: 'flex' }}>
