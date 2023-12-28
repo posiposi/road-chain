@@ -16,7 +16,7 @@ class RegisterShopController extends Controller
     {
         $this->registerShop->execute($request->only([
             'shop_name',
-            'shop_phone_number',
+            'shop_tel',
             'shop_address',
             'shop_postal_code',
             'shop_email',
