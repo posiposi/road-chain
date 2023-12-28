@@ -7,7 +7,7 @@ use App\Models\Shop\EloquentShop;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-final class RegisterShopTest extends TestCase
+final class RegisterShopAdapterTest extends TestCase
 {
     use RefreshDatabase;
 
