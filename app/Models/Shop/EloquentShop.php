@@ -29,7 +29,7 @@ class EloquentShop extends Model
             'shop_id' => (string)Ulid::generate(),
             'owner_id' => (string)Ulid::generate(),
             'shop_name' => $values['shop_name'],
-            'shop_tel' => $values['shop_phone_number'],
+            'shop_tel' => $values['shop_tel'],
             'shop_address' => $values['shop_address'],
             'shop_postal_code' => $values['shop_postal_code'],
             'shop_email' => $values['shop_email'],

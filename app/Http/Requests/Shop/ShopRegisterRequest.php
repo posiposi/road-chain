@@ -15,10 +15,10 @@ class ShopRegisterRequest extends FormRequest
     {
         return [
             'shop_name' => ['required', 'string'],
-            'shop_phone_number' => ['required', 'string', 'max:15'],
-            'shop_address' => ['required', 'string'],
-            'shop_postal_code' => ['required', 'string', 'max:8'],
-            'shop_email' => ['required', 'email'],
+            'shop_tel' => ['string', 'max:15'],
+            'shop_address' => ['string'],
+            'shop_postal_code' => ['string', 'max:8'],
+            'shop_email' => ['email'],
         ];
     }
 }
