@@ -6,12 +6,13 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
   Button,
-  useDisclosure,
   FormLabel,
   Input,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import React from 'react';
+import { useModalHook } from '@/Components/Common/Modal/useModal';
+import RegisterConfirmedModal from './RegisterConfirmedModal';
 
 declare global {
   interface Window {
@@ -20,7 +21,16 @@ declare global {
 }
 
 const RegisterForm = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isAlertDialogOpen,
+    onOpen: onAlertDialogOpen,
+    onClose: onAlertDialogClose,
+  } = useModalHook();
+  const {
+    isOpen: isRegisterModalOpen,
+    onOpen: onRegisterModalOpen,
+    onClose: onRegisterModalClose,
+  } = useModalHook();
   const cancelRef = React.useRef<HTMLButtonElement>(null);
   // 入力フォームの値を管理
   const [formData, setFormData] = React.useState({
@@ -42,8 +52,10 @@ const RegisterForm = () => {
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await axios.post('/api/shop/register', formData);
-      // TODO 成功レスポンス返却時のフロント処理実装
+      await axios.post('/api/shop/register', formData);
+      console.log('success!');
+      onAlertDialogClose();
+      onRegisterModalOpen();
     } catch (error) {
       console.log('error!');
       // TODO エラーレスポンス返却時のフロント処理実装
@@ -52,14 +64,13 @@ const RegisterForm = () => {
 
   return (
     <>
-      <Button colorScheme="red" onClick={onOpen}>
+      <Button colorScheme="red" onClick={onAlertDialogOpen}>
         店舗登録
       </Button>
-
       <AlertDialog
-        isOpen={isOpen}
+        isOpen={isAlertDialogOpen}
         leastDestructiveRef={cancelRef}
-        onClose={onClose}
+        onClose={onAlertDialogClose}
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
@@ -107,7 +118,7 @@ const RegisterForm = () => {
               </AlertDialogBody>
 
               <AlertDialogFooter>
-                <Button ref={cancelRef} onClick={onClose}>
+                <Button ref={cancelRef} onClick={onAlertDialogClose}>
                   Cancel
                 </Button>
                 <Button colorScheme="red" type="submit" ml={3}>
@@ -118,6 +129,10 @@ const RegisterForm = () => {
           </AlertDialogContent>
         </AlertDialogOverlay>
       </AlertDialog>
+      <RegisterConfirmedModal
+        isOpen={isRegisterModalOpen}
+        onClose={onRegisterModalClose}
+      />
     </>
   );
 };
