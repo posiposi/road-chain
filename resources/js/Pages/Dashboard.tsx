@@ -11,7 +11,6 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import setSendTextByLine from '../Components/Dashboard/Line/setSendText';
-import '../../scss/pages/dashboard.scss';
 import RegisterForm from '../Components/Dashboard/Shop/RegisterForm';
 
 export default function Dashboard({ auth }: PageProps) {
