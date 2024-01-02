@@ -22,6 +22,7 @@ declare global {
 
 const RegisterForm = () => {
   const {
+    initialFormData,
     isAlertDialogOpen,
     onAlertDialogOpen,
     onAlertDialogClose,
@@ -49,9 +50,11 @@ const RegisterForm = () => {
     try {
       await axios.post('/api/shop/register', formData);
       onAlertDialogClose();
+      setFormData(initialFormData);
       onRegisterModalOpen();
       setIsSuccess(true);
     } catch (error) {
+      onRegisterModalOpen();
       setIsSuccess(false);
     }
   };

@@ -24,19 +24,16 @@ const RegisterConfirmedModal = ({
           {isSuccess ? <CheckCircleIcon /> : <WarningIcon />}
           {isSuccess ? '店舗登録完了' : '店舗登録失敗'}
         </ModalHeader>
-        <ModalCloseButton />
         <ModalBody className="modal-body-content">
           {isSuccess
-            ? `店舗登録が完了しました！\n閉じるボタンを押してください。`
+            ? `店舗登録が完了しました！`
             : `店舗登録に失敗しました。\n時間を空けて再度登録してください。`}
         </ModalBody>
 
         <ModalFooter>
           <Button colorScheme="blue" mr={3} onClick={onClose}>
-            Close
-            {/* TODO 完了時は入力フォームクリア処理(失敗時は入力内容は保持する) */}
+            閉じる
           </Button>
-          <Button variant="ghost">Secondary Action</Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
