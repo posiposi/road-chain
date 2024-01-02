@@ -6,7 +6,6 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
 } from '@chakra-ui/react';
 import { RegisterConfirmedModalProps } from '@/types';
 import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
