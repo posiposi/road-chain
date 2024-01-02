@@ -34,6 +34,7 @@ const RegisterConfirmedModal = ({
         <ModalFooter>
           <Button colorScheme="blue" mr={3} onClick={onClose}>
             Close
+            {/* TODO 完了時は入力フォームクリア処理(失敗時は入力内容は保持する) */}
           </Button>
           <Button variant="ghost">Secondary Action</Button>
         </ModalFooter>

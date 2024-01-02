@@ -10,9 +10,9 @@ import {
   Input,
 } from '@chakra-ui/react';
 import axios from 'axios';
-import React from 'react';
-import { useModalHook } from '@/Components/Common/Modal/useModal';
 import RegisterConfirmedModal from './RegisterConfirmedModal';
+import useRegisterForm from '@/Components/Dashboard/Shop/Dialog/useRegisterForm';
+import useRegisterCompleted from '@/Components/Dashboard/Shop/Dialog/useRegisterCompleted';
 
 declare global {
   interface Window {
@@ -22,25 +22,20 @@ declare global {
 
 const RegisterForm = () => {
   const {
-    isOpen: isAlertDialogOpen,
-    onOpen: onAlertDialogOpen,
-    onClose: onAlertDialogClose,
-  } = useModalHook();
+    isAlertDialogOpen,
+    onAlertDialogOpen,
+    onAlertDialogClose,
+    cancelRef,
+    formData,
+    setFormData,
+  } = useRegisterForm();
   const {
-    isOpen: isRegisterModalOpen,
-    onOpen: onRegisterModalOpen,
-    onClose: onRegisterModalClose,
-  } = useModalHook();
-  const cancelRef = React.useRef<HTMLButtonElement>(null);
-  // 入力フォームの値を管理
-  const [formData, setFormData] = React.useState({
-    shop_name: '',
-    shop_tel: '',
-    shop_address: '',
-    shop_postal_code: '',
-    shop_email: '',
-  });
-
+    isRegisterModalOpen,
+    onRegisterModalOpen,
+    onRegisterModalClose,
+    isSuccess,
+    setIsSuccess,
+  } = useRegisterCompleted();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -53,12 +48,11 @@ const RegisterForm = () => {
     event.preventDefault();
     try {
       await axios.post('/api/shop/register', formData);
-      console.log('success!');
       onAlertDialogClose();
       onRegisterModalOpen();
+      setIsSuccess(true);
     } catch (error) {
-      console.log('error!');
-      // TODO エラーレスポンス返却時のフロント処理実装
+      setIsSuccess(false);
     }
   };
 
@@ -132,6 +126,7 @@ const RegisterForm = () => {
       <RegisterConfirmedModal
         isOpen={isRegisterModalOpen}
         onClose={onRegisterModalClose}
+        isSuccess={isSuccess}
       />
     </>
   );

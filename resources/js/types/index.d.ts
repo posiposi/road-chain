@@ -16,4 +16,5 @@ export type PageProps<
 export type RegisterConfirmedModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  isSuccess: boolean;
 };
