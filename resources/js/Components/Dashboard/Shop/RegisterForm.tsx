@@ -8,6 +8,7 @@ import {
   Button,
   FormLabel,
   Input,
+  FormControl,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import RegisterConfirmedModal from './RegisterConfirmedModal';
@@ -61,7 +62,7 @@ const RegisterForm = () => {
 
   return (
     <>
-      <Button colorScheme="red" onClick={onAlertDialogOpen}>
+      <Button colorScheme="blue" onClick={onAlertDialogOpen}>
         店舗登録
       </Button>
       <AlertDialog
@@ -77,48 +78,59 @@ const RegisterForm = () => {
 
             <form onSubmit={submit}>
               <AlertDialogBody>
-                <FormLabel>店舗名</FormLabel>
-                <Input
-                  name="shop_name"
-                  value={formData.shop_name}
-                  onChange={handleChange}
-                  placeholder="入力フォーム1"
-                />
-                <FormLabel>店舗電話番号</FormLabel>
+                <FormControl isRequired>
+                  <FormLabel>店舗名</FormLabel>
+                  <Input
+                    name="shop_name"
+                    value={formData.shop_name}
+                    onChange={handleChange}
+                    required
+                    placeholder="〇〇店"
+                  />
+                </FormControl>
+                <FormLabel mt={2}>店舗電話番号</FormLabel>
                 <Input
                   name="shop_tel"
                   value={formData.shop_tel}
+                  type="text"
+                  pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
                   onChange={handleChange}
-                  placeholder="入力フォーム2"
+                  placeholder="ハイフンを含む半角13桁で入力してください。"
                 />
-                <FormLabel>住所</FormLabel>
+                <FormLabel mt={2}>住所</FormLabel>
                 <Input
                   name="shop_address"
                   value={formData.shop_address}
                   onChange={handleChange}
-                  placeholder="入力フォーム3"
+                  placeholder="東京都新宿区歌舞伎町1-1-1"
                 />
-                <FormLabel>郵便番号</FormLabel>
+                <FormLabel mt={2}>郵便番号</FormLabel>
                 <Input
                   name="shop_postal_code"
                   value={formData.shop_postal_code}
+                  type="text"
+                  pattern="[0-9]{3}-[0-9]{4}"
                   onChange={handleChange}
-                  placeholder="入力フォーム4"
+                  placeholder="ハイフンを含む半角8桁で入力してください。"
                 />
-                <FormLabel>問い合わせ先メールアドレス</FormLabel>
-                <Input
-                  name="shop_email"
-                  value={formData.shop_email}
-                  onChange={handleChange}
-                  placeholder="入力フォーム5"
-                />
+                <FormControl isRequired mt={2}>
+                  <FormLabel>問い合わせ先メールアドレス</FormLabel>
+                  <Input
+                    name="shop_email"
+                    value={formData.shop_email}
+                    type="email"
+                    onChange={handleChange}
+                    required
+                    placeholder="xxxx@xxxx.xxxx"
+                  />
+                </FormControl>
               </AlertDialogBody>
 
               <AlertDialogFooter>
                 <Button ref={cancelRef} onClick={onAlertDialogClose}>
                   Cancel
                 </Button>
-                <Button colorScheme="red" type="submit" ml={3}>
+                <Button colorScheme="blue" type="submit" ml={3}>
                   登録
                 </Button>
               </AlertDialogFooter>
