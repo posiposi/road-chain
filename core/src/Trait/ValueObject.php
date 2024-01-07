@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Trait;
+namespace Core\src\Trait;
 
 trait ValueObject
 {

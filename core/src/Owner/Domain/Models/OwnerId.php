@@ -2,7 +2,7 @@
 
 namespace Core\src\Owner\Domain\Models;
 
-use App\Trait\ValueObjectString;
+use Core\src\Trait\ValueObjectString;
 
 final class OwnerId
 {
