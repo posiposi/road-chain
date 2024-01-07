@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Trait;
+namespace Core\src\Trait;
 
 use App\Exceptions\common\InvalidException;
 use App\Exceptions\common\NotFoundException;

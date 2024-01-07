@@ -2,8 +2,7 @@
 
 namespace Core\src\Shop\Domain\Models;
 
-use App\Exceptions\common\InvalidException;
-use App\Trait\ValueObjectString;
+use Core\src\Trait\ValueObjectString;
 
 final class ShopName
 {
