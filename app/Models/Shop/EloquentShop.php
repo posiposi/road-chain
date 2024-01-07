@@ -2,8 +2,10 @@
 
 namespace App\Models\Shop;
 
+use Core\src\Shop\Domain\Models\SearchShopKeyword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\Uid\Ulid;
 
 class EloquentShop extends Model
@@ -34,5 +36,15 @@ class EloquentShop extends Model
             'shop_postal_code' => $values['shop_postal_code'],
             'shop_email' => $values['shop_email'],
         ]);
+    }
+
+    public function findByKeyword(SearchShopKeyword $keyword): Collection
+    {
+        $query = $this->newQuery();
+        // MOC段階なので店舗名、住所に検索キーワードを含むものを取得する
+        return $query
+            ->where('shop_name', 'like', '%' . $keyword->toString() . '%')
+            ->orWhere('shop_address', 'like', '%' . $keyword->toString() . '%')
+            ->get();
     }
 }
