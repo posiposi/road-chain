@@ -40,11 +40,15 @@ class EloquentShop extends Model
 
     public function findByKeyword(SearchShopKeyword $keyword): Collection
     {
+        $keyword = mb_convert_kana($keyword->toString(), 's');
+        $separetedKeywords = explode(' ', $keyword);
         $query = $this->newQuery();
-        // MOC段階なので店舗名、住所に検索キーワードを含むものを取得する
-        return $query
-            ->where('shop_name', 'like', '%' . $keyword->toString() . '%')
-            ->orWhere('shop_address', 'like', '%' . $keyword->toString() . '%')
-            ->get();
+        foreach ($separetedKeywords as $separetedKeyword) {
+            $query->orWhere(function ($query) use ($separetedKeyword) {
+                $query->where('shop_name', 'like', '%' . $separetedKeyword . '%')
+                    ->orWhere('shop_address', 'like', '%' . $separetedKeyword . '%');
+            });
+        }
+        return $query->get();
     }
 }
