@@ -8,10 +8,12 @@ final class Email
 {
     use ValueObjectString;
 
-    public function __construct(private string $value)
+    public function __construct(private ?string $value)
     {
-        $this->validateNotEmpty('メールアドレスが存在しません');
-        $this->validateNotEmail();
+        if ($value) {
+            $this->validateNotEmpty('メールアドレスが存在しません');
+            $this->validateNotEmail();
+        }
     }
 
     private function validateNotEmail()

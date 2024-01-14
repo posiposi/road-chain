@@ -10,8 +10,9 @@ use Symfony\Component\Uid\Ulid;
 
 class EloquentShop extends Model
 {
-    protected $table = 'shops';
+    use HasFactory;
 
+    protected $table = 'shops';
     protected $fillable = [
         'shop_id',
         'owner_id',
@@ -21,8 +22,6 @@ class EloquentShop extends Model
         'shop_postal_code',
         'shop_email',
     ];
-
-    use HasFactory;
 
     public function register(array $values)
     {
