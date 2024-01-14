@@ -11,12 +11,14 @@ final class PostalCode
     const POSTAL_CODE_MAX_LENGTH = 8;
     const INVALID_MESSAGE = '郵便番号が不正です';
 
-    public function __construct(private string $value)
+    public function __construct(private ?string $value)
     {
-        $this->validateNotEmpty('郵便番号が存在しません');
-        $this->validateLengthLimit(self::POSTAL_CODE_MAX_LENGTH, self::INVALID_MESSAGE);
-        $this->validateSpaceOnly($this->value, self::INVALID_MESSAGE);
-        $this->validateNumberAndHyphenOnly($this->value);
+        if ($value) {
+            $this->validateNotEmpty('郵便番号が存在しません');
+            $this->validateLengthLimit(self::POSTAL_CODE_MAX_LENGTH, self::INVALID_MESSAGE);
+            $this->validateSpaceOnly($this->value, self::INVALID_MESSAGE);
+            $this->validateNumberAndHyphenOnly($this->value);
+        }
     }
 
     private function validateNumberAndHyphenOnly(string $value)

@@ -8,8 +8,8 @@ final class SearchShopKeyword
 {
     use ValueObjectString;
 
-    public function __construct(private string $value)
+    public function __construct(private ?string $value)
     {
-        $this->validateNotEmpty('検索キーワードが存在しません');
+        $this->validateNotEmpty('検索キーワードが入力されていません');
     }
 }
