@@ -35,7 +35,7 @@ class SearchShopByKeywordAdapterTest extends TestCase
         }
         $result = $this->adapter->searchByKeyword(SearchShopKeyword::from('名古屋'));
         $this->assertInstanceOf(ShopList::class, $result);
-        // $this->assertCount($expected, $result->items());
+        $this->assertCount($expected, $result->items());
     }
 
     public function testNotFoundException(): void
