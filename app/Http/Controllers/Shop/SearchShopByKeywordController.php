@@ -16,6 +16,7 @@ class SearchShopByKeywordController extends Controller
     public function __invoke(Request $request)
     {
         $shopList = $this->searchShopByKeyword->execute(SearchShopKeyword::from($request->query('searchText')));
-        return response()->json($shopList->toArrayFromModel());
+
+        return response()->json(iterator_to_array($shopList->getIterator()));
     }
 }

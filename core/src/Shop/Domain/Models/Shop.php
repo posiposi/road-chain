@@ -9,8 +9,9 @@ use Core\src\Common\Domain\Models\PostalCode;
 use Core\src\Owner\Domain\Models\OwnerId;
 use Core\src\Shop\Domain\Models\ShopId;
 use Core\src\Shop\Domain\Models\ShopName;
+use JsonSerializable;
 
-final class Shop
+final class Shop implements JsonSerializable
 {
     public function __construct(
         private ShopId $shopId,
@@ -82,5 +83,10 @@ final class Shop
             PostalCode::from($values['shop_postal_code'] ?? ''),
             Email::from($values['shop_email'] ?? ''),
         );
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return $this->items();
     }
 }
