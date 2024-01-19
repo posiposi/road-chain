@@ -2,7 +2,7 @@
 
 namespace Core\src\Shop\Domain\Models;
 
-use App\Trait\ValueObjectString;
+use Core\src\Trait\ValueObjectString;
 
 final class ShopId
 {
