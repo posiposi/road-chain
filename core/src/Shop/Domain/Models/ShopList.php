@@ -2,7 +2,10 @@
 
 namespace Core\src\Shop\Domain\Models;
 
-class ShopList
+use ArrayIterator;
+use IteratorAggregate;
+
+class ShopList implements IteratorAggregate
 {
     public function __construct(private array $items = [])
     {
@@ -16,6 +19,11 @@ class ShopList
     public static function fromArray(array $values = []): self
     {
         return new self($values);
+    }
+
+    public function getIterator(): ArrayIterator
+    {
+        return new ArrayIterator($this->items);
     }
 
     public function toArrayFromModel(): array
