@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Trait;
+namespace Core\src\Trait;
 
 use App\Exceptions\common\InvalidException;
 use App\Exceptions\common\NotFoundException;
@@ -23,7 +23,7 @@ trait ValueObjectString
 
     public function validateLengthLimit(int $maxLength, string $errorMessage): void
     {
-        if (strlen($this->value) !== $maxLength) {
+        if (strlen($this->value) > $maxLength) {
             throw new InvalidException($errorMessage);
         }
     }

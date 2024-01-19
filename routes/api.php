@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::prefix('/shop')->group(function () {
         Route::post('/register', \App\Http\Controllers\Shop\RegisterShopController::class);
+        Route::get('/search', \App\Http\Controllers\Shop\SearchShopByKeywordController::class)->name('api.shop.search.keyword');
     });
 });
 

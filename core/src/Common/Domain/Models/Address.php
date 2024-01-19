@@ -2,7 +2,7 @@
 
 namespace Core\src\Common\Domain\Models;
 
-use App\Trait\ValueObjectString;
+use Core\src\Trait\ValueObjectString;
 
 final class Address
 {
@@ -10,9 +10,11 @@ final class Address
 
     const ADDRESS_MAX_LENGTH = 255;
 
-    public function __construct(private string $value)
+    public function __construct(private ?string $value)
     {
-        $this->validateNotEmpty('住所が存在しません');
-        $this->validateLengthLimit(self::ADDRESS_MAX_LENGTH, '住所が不正です');
+        if ($value) {
+            $this->validateNotEmpty('住所が入力されていません');
+            $this->validateLengthLimit(self::ADDRESS_MAX_LENGTH, '住所が不正です');
+        }
     }
 }
