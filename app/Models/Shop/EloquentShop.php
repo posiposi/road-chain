@@ -2,14 +2,17 @@
 
 namespace App\Models\Shop;
 
+use Core\src\Shop\Domain\Models\SearchShopKeyword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\Uid\Ulid;
 
 class EloquentShop extends Model
 {
-    protected $table = 'shops';
+    use HasFactory;
 
+    protected $table = 'shops';
     protected $fillable = [
         'shop_id',
         'owner_id',
@@ -19,8 +22,6 @@ class EloquentShop extends Model
         'shop_postal_code',
         'shop_email',
     ];
-
-    use HasFactory;
 
     public function register(array $values)
     {
@@ -34,5 +35,19 @@ class EloquentShop extends Model
             'shop_postal_code' => $values['shop_postal_code'],
             'shop_email' => $values['shop_email'],
         ]);
+    }
+
+    public function findByKeyword(SearchShopKeyword $keyword): Collection
+    {
+        $keyword = mb_convert_kana($keyword->toString(), 's');
+        $separetedKeywords = explode(' ', $keyword);
+        $query = $this->newQuery();
+        foreach ($separetedKeywords as $separetedKeyword) {
+            $query->orWhere(function ($query) use ($separetedKeyword) {
+                $query->where('shop_name', 'like', '%' . $separetedKeyword . '%')
+                    ->orWhere('shop_address', 'like', '%' . $separetedKeyword . '%');
+            });
+        }
+        return $query->get();
     }
 }

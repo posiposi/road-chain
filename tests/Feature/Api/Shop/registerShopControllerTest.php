@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
-class registerShopControllerTest extends TestCase
+class RegisterShopControllerTest extends TestCase
 {
     use RefreshDatabase;
 
