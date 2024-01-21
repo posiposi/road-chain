@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Shop\RegisterShopController;
+use App\Http\Controllers\Shop\SearchShopByKeywordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,10 +24,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
 
     Route::prefix('/shop')->group(function () {
-        Route::post('/register', \App\Http\Controllers\Shop\RegisterShopController::class);
-        Route::get('/search', \App\Http\Controllers\Shop\SearchShopByKeywordController::class)->name('api.shop.search.keyword');
+        Route::post('/register', RegisterShopController::class);
     });
 });
+
+Route::get('/shop/search', SearchShopByKeywordController::class)->name('api.shop.search.keyword');
 
 Route::post('test/token', function (Request $request) {
     $credentials = $request->validate([
