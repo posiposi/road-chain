@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
 use Core\src\Shop\Domain\Models\SearchShopKeyword;
-use Illuminate\Http\Request;
 use Core\src\Shop\UseCase\SearchShopByKeyword\SearchShopByKeyword;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class SearchShopByKeywordController extends Controller
 {
@@ -13,10 +15,11 @@ class SearchShopByKeywordController extends Controller
     {
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): Response
     {
         $shopList = $this->searchShopByKeyword->execute(SearchShopKeyword::from($request->query('searchText')));
 
-        return response()->json(iterator_to_array($shopList->getIterator()));
+        $shopListArray = iterator_to_array($shopList->getIterator());
+        return Inertia::render('Shop/ShopList', ['shopList' => $shopListArray]);
     }
 }

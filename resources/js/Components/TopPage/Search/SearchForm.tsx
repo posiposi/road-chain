@@ -9,18 +9,25 @@ import {
   IconButton,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
+import { router } from '@inertiajs/react';
 
 const SearchForm = () => {
-  // 検索フォームのuseState
   const [searchFormText, setSearchFormText] = useState('');
 
-  // 検索フォーム入力変更時イベント
   const handleSearchFormChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchFormText(event.target.value);
   };
 
-  // TODO #6検索API作成後に繋ぎ込み実施
-  const searchSubmit = async () => {};
+  const searchSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      router.get(
+        route('api.shop.search.keyword', { searchText: searchFormText })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
