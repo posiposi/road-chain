@@ -43,6 +43,7 @@ const SearchForm = () => {
                   type="text"
                   placeholder="店舗名や地名を入力してください。"
                   onChange={handleSearchFormChange}
+                  isRequired={true}
                 />
                 <InputRightElement mr="1">
                   <IconButton
