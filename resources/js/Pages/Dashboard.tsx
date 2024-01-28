@@ -2,7 +2,6 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import {
-  Button,
   Box,
   FormControl,
   FormLabel,
@@ -12,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import setSendTextByLine from '../Components/Dashboard/Line/setSendText';
-import '../../scss/pages/dashboard.scss';
+import RegisterForm from '../Components/Dashboard/Shop/RegisterForm';
 
 export default function Dashboard({ auth }: PageProps) {
   const [inputValue, setInputValue] = useState('');
@@ -81,7 +80,7 @@ export default function Dashboard({ auth }: PageProps) {
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6" style={{ display: 'flex' }}>
-              <Button colorScheme="red">fuga</Button>
+              <RegisterForm />
               <Box ml={2}>
                 <a
                   id="line_send_text_icon"
