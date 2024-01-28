@@ -28,6 +28,7 @@ class RegisterShopControllerTest extends TestCase
             'shop_address' => '名古屋市中区',
             'shop_postal_code' => '000-0000',
             'shop_email' => 'hoge@fuga.piyo',
+            'description' => '説明文テスト',
         ];
 
         $response = $this->postJson('/api/shop/register', $testData);
@@ -42,6 +43,7 @@ class RegisterShopControllerTest extends TestCase
             'shop_address' => '',
             'shop_postal_code' => '',
             'shop_email' => 'hoge@fuga.piyo',
+            'description' => '',
         ];
 
         $response = $this->postJson('/api/shop/register', $testData);
@@ -56,6 +58,7 @@ class RegisterShopControllerTest extends TestCase
             'shop_address' => '名古屋市中区',
             'shop_postal_code' => '000-0000',
             'shop_email' => 'hoge@fuga.piyo',
+            'description' => '',
         ];
         $response = $this->postJson('api/shop/register', $testData);
         $response->assertStatus(422)->assertJsonValidationErrors([
@@ -71,6 +74,7 @@ class RegisterShopControllerTest extends TestCase
             'shop_address' => '名古屋市中区',
             'shop_postal_code' => '000-0000',
             'shop_email' => 'hoge@fuga.piyo',
+            'description' => '',
         ];
 
         $response = $this->postJson('api/shop/register', $testData);
@@ -87,6 +91,7 @@ class RegisterShopControllerTest extends TestCase
             'shop_address' => '名古屋市中区',
             'shop_postal_code' => '000-00009',
             'shop_email' => 'hoge@fuga.piyo',
+            'description' => '',
         ];
 
         $response = $this->postJson('/api/shop/register', $testData);
@@ -103,6 +108,7 @@ class RegisterShopControllerTest extends TestCase
             'shop_address' => '名古屋市中区',
             'shop_postal_code' => '000-0000',
             'shop_email' => 'hoge',
+            'description' => '',
         ];
 
         $response = $this->postJson('/api/shop/register', $testData);
