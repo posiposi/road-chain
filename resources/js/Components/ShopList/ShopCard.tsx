@@ -1,5 +1,4 @@
 import { Shop } from '@/types/Shop';
-import { ShopListProps } from '@/types/ShopList';
 import {
   Card,
   CardHeader,
@@ -18,9 +17,8 @@ interface ShopCardProps {
 }
 
 const ShopCard = ({ shop }: ShopCardProps) => {
-  console.log(shop);
   return (
-    <Card maxW="md">
+    <Card maxW="md" minHeight={670} bg="gray.700" color="white">
       <CardHeader>
         <Flex>
           <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
@@ -36,7 +34,9 @@ const ShopCard = ({ shop }: ShopCardProps) => {
 
       <CardBody>
         <Text>
-          中日ドラゴンズは12球団一弱いと言われているため大阪の人から中日ファンはマゾと言われてしまう。来年は最下位を脱出してなんとかそう言われないように頑張って欲しい。
+          {shop.description
+            ? shop.description
+            : 'これはテスト用の日本語テキストです。このテキストは、プログラムの動作確認のために使用されます。日本語の文字列処理をテストする際には、実際の文章と同じように、さまざまな文字が混在するテキストが最適です。このテキストは、ひらがな、カタカナ、漢字、数字、記号を含んでいます。これにより、多様な文字種の処理を確認することができます。'}
         </Text>
       </CardBody>
 
