@@ -1,0 +1,9 @@
+.shop_address {
+  width: 300px;
+
+  .shop_address_text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
