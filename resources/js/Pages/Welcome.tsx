@@ -1,15 +1,16 @@
 import { Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
+import SearchForm from '@/Components/TopPage/Search/SearchForm';
 
-export default function Welcome({
+const Welcome = ({
   auth,
   laravelVersion,
   phpVersion,
-}: PageProps<{ laravelVersion: string; phpVersion: string }>) {
+}: PageProps<{ laravelVersion: string; phpVersion: string }>) => {
   return (
     <>
       <Head title="Welcome" />
-      <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+      <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-gray-900 selection:text-white">
         <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
           {auth.user ? (
             <Link
@@ -51,6 +52,8 @@ export default function Welcome({
               />
             </svg>
           </div>
+
+          <SearchForm></SearchForm>
 
           <div className="mt-16">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
@@ -343,4 +346,6 @@ export default function Welcome({
             `}</style>
     </>
   );
-}
+};
+
+export default Welcome;
