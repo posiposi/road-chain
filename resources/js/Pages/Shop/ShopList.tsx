@@ -4,18 +4,8 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
   Grid,
   GridItem,
-  Heading,
-  Text,
-  Image,
-  Flex,
-  Box,
-  Avatar,
 } from '@chakra-ui/react';
 import { ShopListProps } from '@/types/ShopList';
 import ShopCard from '../../Components/ShopList/ShopCard';
