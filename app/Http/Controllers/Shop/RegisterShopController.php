@@ -20,6 +20,7 @@ class RegisterShopController extends Controller
             'shop_address',
             'shop_postal_code',
             'shop_email',
+            'description',
         ]));
     }
 }
