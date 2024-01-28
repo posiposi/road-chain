@@ -33,6 +33,7 @@ final class RegisterShopAdapterTest extends TestCase
             'shop_address' => '名古屋市中区',
             'shop_postal_code' => '000-0000',
             'shop_email' => 'abcd@xxxx.yyyy',
+            'description' => '説明文テスト',
         ];
         $this->adapter->register($this->testData);
         $this->assertDatabaseHas('shops', $this->testData);

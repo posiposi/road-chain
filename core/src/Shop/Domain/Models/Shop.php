@@ -21,6 +21,7 @@ final class Shop implements JsonSerializable
         private Address $shopAddress,
         private PostalCode $shopPostalCode,
         private Email $shopEmail,
+        private Description $description,
     ) {
     }
 
@@ -34,6 +35,7 @@ final class Shop implements JsonSerializable
             'shop_address' => self::shopAddress()->toString(),
             'shop_postal_code' => self::shopPostalCode()->toString(),
             'shop_email' => self::shopEmail()->toString(),
+            'description' => self::description()->toString(),
         ];
     }
 
@@ -72,6 +74,11 @@ final class Shop implements JsonSerializable
         return $this->shopEmail;
     }
 
+    public function description(): Description
+    {
+        return $this->description;
+    }
+
     public static function fromArray(array $values): self
     {
         return new self(
@@ -82,6 +89,7 @@ final class Shop implements JsonSerializable
             Address::from($values['shop_address'] ?? ''),
             PostalCode::from($values['shop_postal_code'] ?? ''),
             Email::from($values['shop_email'] ?? ''),
+            Description::from($values['description'] ?? ''),
         );
     }
 
