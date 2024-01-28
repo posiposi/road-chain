@@ -18,6 +18,7 @@ class ShopRegisterRequest extends FormRequest
             'shop_tel' => ['max:15'],
             'shop_postal_code' => ['max:8'],
             'shop_email' => ['email'],
+            'description' => ['max:255'],
         ];
     }
 
@@ -28,6 +29,7 @@ class ShopRegisterRequest extends FormRequest
             'shop_tel.max' => '店舗の電話番号は15文字以下で入力してください。',
             'shop_postal_code.max' => '店舗の郵便番号は8文字以下で入力してください。',
             'shop_email.email' => '店舗メールアドレスの形式が不正です。',
+            'description.max' => '店舗の説明は255文字以下で入力してください。',
         ];
     }
 }

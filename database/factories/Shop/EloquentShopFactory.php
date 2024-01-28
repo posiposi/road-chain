@@ -23,6 +23,7 @@ class EloquentShopFactory extends Factory
             'shop_address' => substr($this->faker->address(), 9),
             'shop_postal_code' => $this->faker->postcode(),
             'shop_email' => $this->faker->email(),
+            'description' => $this->faker->realText(),
         ];
     }
 }

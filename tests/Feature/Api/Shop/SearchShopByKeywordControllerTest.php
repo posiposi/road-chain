@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
+use Inertia\Testing\AssertableInertia as Assert;
 
 class SearchShopByKeywordControllerTest extends TestCase
 {
@@ -28,17 +29,12 @@ class SearchShopByKeywordControllerTest extends TestCase
             ['*']
         );
         $response = $this->get(route('api.shop.search.keyword', ['searchText' => '名古屋']));
-        $response->assertOk();
-        $response->assertJsonCount(1);
-        $response->assertJsonStructure([
-            '*' => [
-                'shop_id',
-                'shop_name',
-                'shop_address',
-                'shop_tel',
-                'shop_postal_code',
-                'shop_email',
-            ]
-        ]);
+        $response->assertInertia(
+            fn (Assert $page) => $page
+                ->component('Shop/ShopList')
+                ->count('shopList', 1)
+                ->where('shopList.0.shop_name', 'テスト店舗')
+                ->where('shopList.0.shop_address', '名古屋市中区')
+        );
     }
 }
