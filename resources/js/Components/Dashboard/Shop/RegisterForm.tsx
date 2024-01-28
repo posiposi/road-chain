@@ -9,6 +9,7 @@ import {
   FormLabel,
   Input,
   FormControl,
+  Textarea,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import RegisterConfirmedModal from './RegisterConfirmedModal';
@@ -38,7 +39,11 @@ const RegisterForm = () => {
     isSuccess,
     setIsSuccess,
   } = useRegisterCompleted();
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
@@ -124,6 +129,13 @@ const RegisterForm = () => {
                     placeholder="xxxx@xxxx.xxxx"
                   />
                 </FormControl>
+                <FormLabel mt={2}>説明</FormLabel>
+                <Textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  placeholder="店舗の説明を入力してください。"
+                />
               </AlertDialogBody>
 
               <AlertDialogFooter>

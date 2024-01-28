@@ -21,6 +21,7 @@ class EloquentShop extends Model
         'shop_address',
         'shop_postal_code',
         'shop_email',
+        'description',
     ];
 
     public function register(array $values)
@@ -34,6 +35,7 @@ class EloquentShop extends Model
             'shop_address' => $values['shop_address'],
             'shop_postal_code' => $values['shop_postal_code'],
             'shop_email' => $values['shop_email'],
+            'description' => $values['description'],
         ]);
     }
 
