@@ -23,7 +23,7 @@ trait ValueObjectString
 
     public function validateLengthLimit(int $maxLength, string $errorMessage): void
     {
-        if (strlen($this->value) > $maxLength) {
+        if (mb_strlen($this->value) > $maxLength) {
             throw new InvalidException($errorMessage);
         }
     }
