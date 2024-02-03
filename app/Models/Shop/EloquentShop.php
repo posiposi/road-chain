@@ -3,6 +3,7 @@
 namespace App\Models\Shop;
 
 use Core\src\Shop\Domain\Models\SearchShopKeyword;
+use Core\src\Shop\Domain\Models\ShopId;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
@@ -51,5 +52,11 @@ class EloquentShop extends Model
             });
         }
         return $query->get();
+    }
+
+    public function findByShopId(ShopId $shopId)
+    {
+        $query = $this->newQuery();
+        return $query->where('shop_id', $shopId->toString())->first();
     }
 }
