@@ -1,5 +1,6 @@
 import { Shop } from '@/types/Shop';
 import {
+  Button,
   Card,
   CardHeader,
   CardBody,
@@ -10,11 +11,24 @@ import {
   Flex,
   Box,
   Avatar,
+  Link,
 } from '@chakra-ui/react';
+import { StarIcon, ChatIcon } from '@chakra-ui/icons';
+import { router } from '@inertiajs/react';
 
 interface ShopCardProps {
   shop: Shop;
 }
+
+const navigateToShopDetail =
+  (shopId: string) => (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    try {
+      router.get(route('shop.detail'), { shopId: shopId });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 const ShopCard = ({ shop }: ShopCardProps) => {
   return (
@@ -54,7 +68,36 @@ const ShopCard = ({ shop }: ShopCardProps) => {
             minW: '136px',
           },
         }}
-      ></CardFooter>
+      >
+        <Link>
+          <Button
+            colorScheme="white"
+            flex="1"
+            variant="ghost"
+            leftIcon={<StarIcon />}
+          >
+            Like
+          </Button>
+        </Link>
+        <Link>
+          <Button
+            colorScheme="white"
+            flex="1"
+            variant="ghost"
+            leftIcon={<ChatIcon />}
+          >
+            Comment
+          </Button>
+        </Link>
+        <Button
+          variant="solid"
+          colorScheme="blue"
+          onClick={navigateToShopDetail(shop.shop_id)}
+        >
+          店舗詳細へ
+        </Button>
+        {/* </Link> */}
+      </CardFooter>
     </Card>
   );
 };
