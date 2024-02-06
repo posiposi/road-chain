@@ -1,97 +1,106 @@
 import {
+  Avatar,
   Box,
   Button,
-  Card,
-  CardBody,
-  CardFooter,
+  Container,
   Flex,
-  Heading,
   Image,
-  Stack,
-  StackDivider,
-  Text,
   Link,
+  Stack,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Text,
 } from '@chakra-ui/react';
 import { ExternalLinkIcon, StarIcon, ChatIcon } from '@chakra-ui/icons';
-import { Shop } from '@/types/Shop';
-
-interface ShopDetailProps {
-  shop: Shop;
-}
+import { ShopDetailProps } from '@/types/ShopDetail';
 
 const ShopDetail = (props: ShopDetailProps) => {
+  const shop = {
+    image1: 'http://localhost/img/Shop_Detail_IMG.jpeg',
+    image2: 'http://localhost/img/LAUGHING_MAN_TEST1.jpg',
+  };
+
   return (
-    <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-gray-900">
-      <Card
-        direction={{ base: 'column', sm: 'row' }}
-        overflow="hidden"
-        variant="outline"
-        width="auto"
-        height="auto"
-      >
-        <Image
-          objectFit="cover"
-          // TODO 動的生成画像を表示する(NOIMAGEの場合はデフォルト画像を表示する)
-          src="http://localhost/img/Shop_Detail_IMG.jpeg"
-          alt="店舗画像"
-        />
-        <Stack divider={<StackDivider borderColor="black" />}>
-          <CardBody>
-            <Heading size="md">{props.shop.shop_name}</Heading>
-            <Link
-              // TODO URL生成のメソッドコンポーネントを作成をする
-              href={`${import.meta.env.VITE_GOOGLE_MAPS_SEARCH_URL}${
-                props.shop.shop_address
-              }`}
-              color="blue"
-              isExternal
-            >
-              {props.shop.shop_address} <ExternalLinkIcon mx="2px" />
-            </Link>
-            <Flex direction="row">
-              <Text>{props.shop.shop_tel}</Text>
-              <Text ml="2">{props.shop.shop_email}</Text>
-            </Flex>
-            <Text mt="1">{props.shop.description}</Text>
-          </CardBody>
-          {/* Google Map APIサンプル */}
-          <Box>
+    <Box className="dark:bg-gray-900">
+      <Container maxW="container.lg" bg="gray.700">
+        <Box p={5}>
+          <Flex>
             <Image
+              src={shop.image1}
+              alt="店舗画像"
               objectFit="cover"
-              src="http://localhost/img/Google_Map_Sample.png"
-              alt="マップサンプル"
-              width="1000px"
-              height="200px"
+              width="50%"
+              height="600px"
             />
-          </Box>
-          <CardFooter>
-            <Link>
+            <Avatar src={shop.image2} size="2xl" marginLeft="10px" />
+          </Flex>
+          <Stack spacing={3} mt={5}>
+            <Text fontSize="2xl" fontWeight="bold" color="white">
+              {props.shop.shop_name}
+            </Text>
+            <Box>
+              <Tabs>
+                <TabList>
+                  <Tab color="white" _selected={{ color: 'red' }}>
+                    基本情報
+                  </Tab>
+                  <Tab color="white" _selected={{ color: 'red' }}>
+                    特徴
+                  </Tab>
+                  <Tab color="white" _selected={{ color: 'red' }}>
+                    説明
+                  </Tab>
+                </TabList>
+                <TabPanels height="130px">
+                  <TabPanel>
+                    <Link
+                      // TODO URL生成のメソッドコンポーネントを作成をする
+                      href={`${import.meta.env.VITE_GOOGLE_MAPS_SEARCH_URL}${
+                        props.shop.shop_address
+                      }`}
+                      color="white"
+                      isExternal
+                    >
+                      {props.shop.shop_address} <ExternalLinkIcon mx="2px" />
+                    </Link>
+                    <Text color="white">{props.shop.shop_tel}</Text>
+                    <Text color="white">{props.shop.shop_email}</Text>
+                  </TabPanel>
+                  <TabPanel>
+                    <Text color="white">特徴を表示する予定</Text>
+                  </TabPanel>
+                  <TabPanel>
+                    <Text color="white">{props.shop.description}</Text>
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
+            </Box>
+            {/* Google Maps APIでの地図表示を行う部分 */}
+            <Box width="100%" height="500px" bg="gray.200" />
+            <Stack direction="row" spacing={3}>
               <Button
-                colorScheme="white"
-                flex="1"
-                variant="ghost"
                 leftIcon={<StarIcon />}
+                colorScheme="yellow"
+                variant="outline"
               >
-                Like
+                お気に入り登録
               </Button>
-            </Link>
-            <Link>
               <Button
-                colorScheme="white"
-                flex="1"
-                variant="ghost"
                 leftIcon={<ChatIcon />}
+                colorScheme="teal"
+                variant="outline"
               >
-                Comment
+                メッセージ
               </Button>
-            </Link>
-            <Button variant="solid" colorScheme="blue">
-              予約する
-            </Button>
-          </CardFooter>
-        </Stack>
-      </Card>
-    </div>
+              <Button colorScheme="blue">予約する</Button>
+            </Stack>
+          </Stack>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 
