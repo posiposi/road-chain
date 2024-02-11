@@ -27,6 +27,9 @@ const ShopDetail = (props: ShopDetailProps) => {
     <Box className="dark:bg-gray-900">
       <Container maxW="container.lg" bg="gray.700">
         <Box p={5}>
+          <Text fontSize="2xl" fontWeight="bold" color="white">
+            {props.shop.shop_name}
+          </Text>
           <Flex>
             <Image
               src={shop.image1}
@@ -38,9 +41,6 @@ const ShopDetail = (props: ShopDetailProps) => {
             <Avatar src={shop.image2} size="2xl" marginLeft="10px" />
           </Flex>
           <Stack spacing={3} mt={5}>
-            <Text fontSize="2xl" fontWeight="bold" color="white">
-              {props.shop.shop_name}
-            </Text>
             <Box>
               <Tabs>
                 <TabList>
@@ -57,7 +57,7 @@ const ShopDetail = (props: ShopDetailProps) => {
                 <TabPanels height="130px">
                   <TabPanel>
                     <Link
-                      // TODO URL生成のメソッドコンポーネントを作成をする
+                      // TODO URL生成のメソッドコンポーネントを作成する
                       href={`${import.meta.env.VITE_GOOGLE_MAPS_SEARCH_URL}${
                         props.shop.shop_address
                       }`}
