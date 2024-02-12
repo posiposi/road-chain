@@ -28,7 +28,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
 });
 
-Route::get('/shop/search', SearchShopByKeywordController::class)->name('api.shop.search.keyword');
+Route::middleware(['cache.headers:no_store,;max-age=0',])->group(function () {
+    Route::get('/shop/search', SearchShopByKeywordController::class)->name('api.shop.search.keyword');
+});
 
 Route::post('test/token', function (Request $request) {
     $credentials = $request->validate([

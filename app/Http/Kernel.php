@@ -67,4 +67,14 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+    /**
+     * JSONでの検索後にブラウザバックするとJSONが表示される問題を解消するためのミドルウェア
+     * 全体適用をしないためにここで登録
+     *
+     * @var array
+     */
+    protected $routeMiddleware = [
+        'no-cache' => \App\Http\Middleware\NoCacheMiddleware::class,
+    ];
 }
