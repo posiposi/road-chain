@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Domein\Models\Shop;
+namespace Tests\Unit\Domain\Models\Shop;
 
 use App\Models\Shop\EloquentShop;
 use Core\src\Shop\Domain\Models\Shop;
